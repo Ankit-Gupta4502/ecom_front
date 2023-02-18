@@ -10,6 +10,8 @@
 
 # production
 /build
+[safe]
+    directory = *
 
 # misc
 .DS_Store
