@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from '../Context/ContextProvider'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router';
@@ -10,7 +10,7 @@ const Auth = ({ type = "login" }) => {
         password: "",
         password_confirmation: ""
     })
-    const { register, state: { errors, isAuthenticated, auth, loading }, login } = useGlobalContext()
+    const { register, state: { errors, isAuthenticated, auth, loading, },resetError, login } = useGlobalContext()
     const navigate = useNavigate()
 
     React.useEffect(() => {
@@ -18,6 +18,10 @@ const Auth = ({ type = "login" }) => {
             navigate('/')
         }
     }, [isAuthenticated])
+
+    useEffect(()=>{
+        resetError()
+    },[type])
 
 
     return (
@@ -61,7 +65,7 @@ const Auth = ({ type = "login" }) => {
 
                     </div>
                     <button className="h-10 mt-4 w-full px-6 font-semibold rounded-md bg-black text-white capitalize" onClick={() => type === "register" ? register(formVals) : login({ email: formVals?.email, password: formVals?.password })} disabled={loading} >
-                        {type}
+                        { loading?"Loading...":type}
                     </button>
 
                     <Link className='text-xs text-slate-500 underline mt-3'

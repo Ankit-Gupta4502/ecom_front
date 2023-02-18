@@ -1,4 +1,4 @@
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -9,6 +9,8 @@ const reducer = (state, action) => {
         loading: true
       }
 
+    case "RESET_ERROR":
+      return { ...state, errors: {} }
     case "REGISTER_USER_SUCCESS":
     case "LOGIN_USER_SUCCESS":
       localStorage.setItem("ecom_user", JSON.stringify(action.payload))
@@ -36,11 +38,11 @@ const reducer = (state, action) => {
         ...state,
         errors: action.payload?.errors,
         loading: false,
-        
+
       }
 
     case "LOGOUT_USER":
-      return { ...state, cartItems: [], auth: {} ,isAuthenticated:false}
+      return { ...state, cartItems: [], auth: {}, isAuthenticated: false }
 
     case "ADD_CART_ITEM":
       return { ...state, cartItems: [...state.cartItems, action.payload] }

@@ -18,10 +18,13 @@ const ContextProvider = ({ children }) => {
         localStorage.removeItem('ecom_user')
         dispatch({ type: "LOGOUT_USER" })
     }
+    const resetError = () =>{
+        dispatch({ type: "RESET_ERROR"})
+    }
     const register = async (data) => {
         dispatch({ type: "REGISTER_USER_PENDING", payload: true })
         try {
-            const response = await axios.post(`https://ecomauth.vercel.app/register`, data,
+            const response = await axios.post(`https://ecomauth.onrender.com/register`, data,
             )
             dispatch({ type: "REGISTER_USER_SUCCESS", payload: response.data.user })
         } catch (error) {
@@ -35,7 +38,7 @@ const ContextProvider = ({ children }) => {
     const login = async (data) => {
         dispatch({ type: "LOGIN_USER_PENDING", payload: true })
         try {
-            const response = await axios.post(`https://ecomauth.vercel.app/login`, data)
+            const response = await axios.post(`https://ecomauth.onrender.com/login`, data)
             dispatch({ type: "LOGIN_USER_SUCCESS", payload: response.data?.user })
         } catch (error) {
             dispatch({ type: "LOGIN_USER_FAILED", payload: error.response?.data || error.response.message })
@@ -52,7 +55,7 @@ const ContextProvider = ({ children }) => {
 
     return (
 
-            <Context.Provider value={{ state, logout,register, login, addCartItems, removeCartItems }}>
+            <Context.Provider value={{ state, logout,register, login, addCartItems, removeCartItems,resetError }}>
                 {children}
                 <ToastContainer/>
             </Context.Provider>
