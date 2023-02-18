@@ -21,7 +21,7 @@ const ContextProvider = ({ children }) => {
     const register = async (data) => {
         dispatch({ type: "REGISTER_USER_PENDING", payload: true })
         try {
-            const response = await axios.post(`https://ecomauth-production.up.railway.app/register`, data,
+            const response = await axios.post(`https://ecomauth.vercel.app/register`, data,
             )
             dispatch({ type: "REGISTER_USER_SUCCESS", payload: response.data.user })
         } catch (error) {
@@ -35,7 +35,7 @@ const ContextProvider = ({ children }) => {
     const login = async (data) => {
         dispatch({ type: "LOGIN_USER_PENDING", payload: true })
         try {
-            const response = await axios.post(`https://ecomauth-production.up.railway.app/login`, data)
+            const response = await axios.post(`https://ecomauth.vercel.app/login`, data)
             dispatch({ type: "LOGIN_USER_SUCCESS", payload: response.data?.user })
         } catch (error) {
             dispatch({ type: "LOGIN_USER_FAILED", payload: error.response?.data || error.response.message })
