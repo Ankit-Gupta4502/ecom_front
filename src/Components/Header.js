@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiShoppingBag } from "react-icons/fi"
+import { AiOutlineShopping } from "react-icons/ai"
 import { AiOutlineHeart, AiOutlineUser } from "react-icons/ai"
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../Context/ContextProvider'
@@ -33,7 +33,7 @@ const Header = () => {
                         <div className="text-center leading-[1] cart-items w-[20px] h-[20px] rounded-full absolute top-[-5px] left-[12px] bg-black text-white">
                             {cartItems?.length}
                         </div>
-                        <FiShoppingBag size={22} />
+                        <AiOutlineShopping size={22} />
                     </div>
                 </div>
             </div>
